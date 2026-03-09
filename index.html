@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Clear and Clean – Clean Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #f7f5f2;
+      --bg-alt: #ffffff;
+      --accent: #c9a15b;
+      --accent-soft: #e4cf9a;
+      --text-main: #222222;
+      --text-muted: #666666;
+      --border-soft: #e0ddd7;
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: #f8f6f2;
+        background-image: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.9), rgba(240,236,230,0.6)),
+                            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.04"/></svg>');
+        background-size: cover;
+        color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: "Georgia", "Times New Roman", serif;
+      letter-spacing: 0.04em;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0 24px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #ffffff, #e7dfcf);
+      border: 1px solid #ddd2bd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--accent);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text h1 {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    .logo-text span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    nav a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 32px;
+      padding: 32px 0 40px;
+      align-items: center;
+    }
+
+    .hero-text h2 {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+    }
+
+    .hero-text h2 span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .hero-text p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      max-width: 480px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      font-size: 0.8rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #fff;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-secondary {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .hero-visual {
+      background: radial-gradient(circle at top, #ffffff, #f0ece5);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid #e3ddd2;
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 12px;
+    }
+
+    .hero-visual-main {
+      border-radius: 18px;
+      background: linear-gradient(135deg, #fdfbf7, #f1ebe0);
+      border: 1px solid #e3ddd2;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 180px;
+    }
+
+    .hero-visual-main h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .hero-visual-main p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 260px;
+    }
+
+    .hero-visual-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .hero-visual-tag {
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid #e3ddd2;
+    }
+
+    .hero-visual-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .hero-visual-card {
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid #e3ddd2;
+      padding: 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-visual-card strong {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 18px;
+    }
+
+    .section-header h2 {
+      font-size: 1.4rem;
+    }
+
+    .section-header span {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      padding: 18px 18px 16px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .price span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-left: 4px;
+    }
+
+    .addons-list {
+      list-style: none;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .addons-list li::before {
+      content: "• ";
+      color: var(--accent);
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 24px;
+    }
+
+    .about-text p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .about-highlight {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #fff;
+      border: 1px solid var(--border-soft);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .team-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      padding: 14px;
+      border: 1px solid var(--border-soft);
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .team-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      background: linear-gradient(135deg, #fdfbf7, #e8e0d0);
+      border: 1px solid #ddd2bd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--accent);
+    }
+
+    .team-card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .team-role {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .team-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .gallery-item {
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fdfbf7, #f0ece5);
+      border: 1px solid var(--border-soft);
+      padding: 12px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 120px;
+    }
+
+    .gallery-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .gallery-title {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .form-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      padding: 18px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #d6d1c8;
+      font-size: 0.9rem;
+      font-family: inherit;
+      background: #fdfbf7;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+    }
+
+    .form-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .form-success {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: #2f7a3e;
+      background: #e4f3e7;
+      border-radius: 8px;
+      padding: 8px 10px;
+      display: none;
+    }
+
+    footer {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-soft);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .hero-visual {
+        order: -1;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      nav {
+        font-size: 0.8rem;
+      }
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">
+        <div class="logo-mark">C</div>
+        <div class="logo-text">
+          <h1>Clear and Clean</h1>
+          <span>Clean Services</span>
+        </div>
+      </div>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#team">Team</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#booking">Booking</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-text">
+          <div class="hero-subtitle">Hemel Hempstead · Private car & window care</div>
+          <h2>Luxury clean for the cars<br />you <span>care about</span>.</h2>
+          <p>
+            Clear and Clean is a small, dedicated team offering meticulous interior and exterior
+            cleaning for private vehicles in and around Hemel Hempstead. Quietly precise, never rushed.
+          </p>
+          <div class="hero-badges">
+            <div class="badge">
+              <span class="badge-dot"></span>
+              Interior & exterior detailing
+            </div>
+            <div class="badge">
+              <span class="badge-dot"></span>
+              Add‑ons: pet hair, deep clean, waxing
+            </div>
+            <div class="badge">
+              <span class="badge-dot"></span>
+              Three‑person specialist team
+            </div>
+          </div>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="scrollToSection('booking')">
+              Book an appointment
+            </button>
+            <button class="btn-secondary" onclick="scrollToSection('services')">
+              View services & pricing
+            </button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-visual-main">
+            <div>
+              <h3>Quietly thorough, never rushed.</h3>
+              <p>
+                Every visit is handled by Miguel, Abdul and Francisco themselves. No call centres,
+                no anonymous crews — just careful, consistent work.
+              </p>
+            </div>
+            <div class="hero-visual-tags">
+              <div class="hero-visual-tag">Interior & exterior</div>
+              <div class="hero-visual-tag">Local to Hemel Hempstead</div>
+              <div class="hero-visual-tag">Manual booking · Pay on completion</div>
+            </div>
+          </div>
+          <div class="hero-visual-strip">
+            <div class="hero-visual-card">
+              <strong>Exterior clean</strong>
+              Subtle shine, streak‑free glass, and attention to the details that actually show.
+            </div>
+            <div class="hero-visual-card">
+              <strong>Interior care</strong>
+              Calm, tidy cabins: vacuuming, surfaces, and careful treatment of touch points.
+            </div>
+            <div class="hero-visual-card">
+              <strong>Add‑ons</strong>
+              Pet hair removal, deep interior clean and waxing, when your car needs more.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services">
+        <div class="section-header">
+          <h2>Services & pricing</h2>
+          <span>Clear and simple</span>
+        </div>
+        <div class="services-grid">
+          <div class="card">
+            <h3>Exterior clean</h3>
+            <p>
+              Hand wash, wheel faces, glass and finishing touches for a refined, clean look without harsh
+              shortcuts.
+            </p>
+            <div class="price">£10 <span>small car · SUV +10%</span></div>
+            <ul class="addons-list">
+              <li>Bodywork wash and rinse</li>
+              <li>Glass cleaned inside & out</li>
+              <li>Wheel faces cleaned</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Interior clean</h3>
+            <p>
+              A calm, refreshed interior: vacuuming, surfaces, touch points and glass, with care for the
+              details you notice every day.
+            </p>
+            <div class="price">£15 <span>small car · SUV +10%</span></div>
+            <ul class="addons-list">
+              <li>Full cabin vacuum</li>
+              <li>Dashboard & console wiped</li>
+              <li>Interior glass cleaned</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Full detail</h3>
+            <p>
+              Interior and exterior combined into a single visit for a car that feels reset, inside and out.
+            </p>
+            <div class="price">£25 <span>small car · SUV +10%</span></div>
+            <ul class="addons-list">
+              <li>Exterior & interior clean</li>
+              <li>Glass throughout</li>
+              <li>Ideal for occasional deep refresh</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Add‑ons</h3>
+            <p>
+              When your car needs more attention, you can request additional services alongside any booking.
+            </p>
+            <ul class="addons-list">
+              <li>Pet hair removal</li>
+              <li>Deep interior clean</li>
+              <li>Waxing</li>
+            </ul>
+            <p class="form-note">
+              Add‑ons are quoted and confirmed manually when you request an appointment.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="section-header">
+          <h2>About Clear and Clean</h2>
+          <span>Three people, one standard</span>
+        </div>
+        <div class="two-column">
+          <div class="about-text">
+            <p>
+              Clear and Clean is a small, focused team based around Hemel Hempstead, specialising in
+              private car and window cleaning. No franchises, no rotating crews — just three people who
+              know exactly how they like things to look when they’re finished.
+            </p>
+            <p>
+              The work is intentionally local and intentionally personal. Every appointment is handled by
+              Miguel, Abdul or Francisco themselves, so the standard stays consistent from one visit to
+              the next.
+            </p>
+            <p>
+              Payment is simple: you pay on completion of the service, once you’re happy with the result.
+              Bookings are confirmed manually so that every slot is realistic and honoured.
+            </p>
+          </div>
+          <div>
+            <div class="about-highlight">
+              <strong>Hemel Hempstead & nearby.</strong><br />
+              Clear and Clean focuses on private individuals in and around Hemel Hempstead, keeping travel
+              time low and time spent on your car high.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="team">
+        <div class="section-header">
+          <h2>The team</h2>
+          <span>Names you’ll actually meet</span>
+        </div>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar">M</div>
+            <h3>Miguel</h3>
+            <div class="team-role">Exterior specialist</div>
+            <p>
+              Focused on exterior finishes, glass and the small details that make a car look quietly
+              immaculate.
+            </p>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">A</div>
+            <h3>Abdul</h3>
+            <div class="team-role">Interior specialist</div>
+            <p>
+              Works on cabins, surfaces and touch points, aiming for a calm, tidy interior that feels
+              pleasant to sit in.
+            </p>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">F</div>
+            <h3>Francisco</h3>
+            <div class="team-role">Technical specialist and Quality Assurance</div>
+            <p>
+              Ensures the smooth operation of all cleaning processes and maintains the high standards the team
+              expects for themselves.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery">
+        <div class="section-header">
+          <h2>Gallery</h2>
+          <span>Placeholder imagery</span>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <div>
+              <div class="gallery-label">Exterior</div>
+              <div class="gallery-title">Clean, reflective bodywork</div>
+              <p>
+                Placeholder image: a freshly washed car exterior with subtle reflections and clear glass.
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <div>
+              <div class="gallery-label">Interior</div>
+              <div class="gallery-title">Calm, tidy cabin</div>
+              <p>
+                Placeholder image: a neat interior with clean seats, dust‑free surfaces and clear screens.
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <div>
+              <div class="gallery-label">Windows</div>
+              <div class="gallery-title">Streak‑free glass</div>
+              <p>
+                Placeholder image: close‑up of clean windows with no streaks or residue.
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <div>
+              <div class="gallery-label">Detail</div>
+              <div class="gallery-title">Before & after</div>
+              <p>
+                Placeholder image: a split view showing a car before and after a full detail.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="booking">
+        <div class="section-header">
+          <h2>Booking</h2>
+          <span>Manual appointments</span>
+        </div>
+        <div class="two-column">
+          <div class="form-card">
+            <form id="booking-form">
+              <div class="form-row">
+                <div>
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" required />
+                </div>
+                <div>
+                  <label for="car-type">Car type</label>
+                  <select id="car-type" name="car-type" required>
+                    <option value="">Select car type</option>
+                    <option value="small">Small car</option>
+                    <option value="suv">SUV (+10%)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div>
+                  <label for="service">Service</label>
+                  <select id="service" name="service" required>
+                    <option value="">Select service</option>
+                    <option value="exterior">Exterior clean (£10)</option>
+                    <option value="interior">Interior clean (£15)</option>
+                    <option value="full">Full detail (£25)</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="addons">Add‑ons (optional)</label>
+                  <select id="addons" name="addons" multiple>
+                    <option value="pet-hair">Pet hair removal*</option>
+                    <option value="deep-interior">Deep interior clean*</option>
+                    <option value="waxing">Waxing</option>
+                  </select>
+                  <button type="button" id="clear-addons" class="btn-secondary">
+                    Clear add‑ons
+                    </button>
+                 <div class="form-note">
+                    *Addons marked with an asterisk include an interior clean to ensure the best results.
+                  </div>
+                  <div class="form-note">
+                    Hold Ctrl (Windows) or Cmd (Mac) to select multiple.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div>
+                  <label for="date">Preferred date</label>
+                  <input id="date" name="date" type="date" required />
+                </div>
+                <div>
+                  <label for="time">Preferred time</label>
+                  <input id="time" name="time" type="time" required />
+                </div>
+              </div>
+
+              <div>
+                <label for="address">Address (Hemel Hempstead area)</label>
+                <textarea id="address" name="address" required></textarea>
+              </div>
+
+              <div>
+                <label for="notes">Notes (optional)</label>
+                <textarea id="notes" name="notes" placeholder="Anything specific you’d like to mention"></textarea>
+              </div>
+              <div id="price-estimate" style="
+                margin-top: 10px;
+                font-size: 1rem;
+                font-weight: 600;
+                color: #c9a15b;
+                ">
+                Estimated total: £0
+                </div>
+
+              <button type="submit" class="btn-primary">
+                Request appointment
+              </button>
+              <div id="form-success" class="form-success">
+                Thank you. Your request has been recorded locally. In a real deployment, this would be sent to the team for manual confirmation.
+              </div>
+            </form>
+          </div>
+          <div>
+            <div class="about-highlight">
+              <strong>Manual booking · Pay on completion.</strong><br />
+              This form is designed for local development. No contact details are shown publicly and no
+              real messages are sent. In a live deployment, submissions would be forwarded to the team for
+              manual confirmation and scheduling.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Clear and Clean. All rights reserved.</div>
+      <div>Static local site · HTML · CSS · JS</div>
+    </footer>
+  </div>
+
+  <script>
+    function calculatePrice() {
+        const service = document.getElementById("service").value;
+        const carType = document.getElementById("car-type").value;
+        const addons = Array.from(document.getElementById("addons").selectedOptions).map(o => o.value);
+
+        let total = 0;
+
+        // Base service prices
+        const basePrices = {
+            exterior: 10,
+            interior: 15,
+            full: 25
+        };
+
+        // Add-on prices
+        const addonPrices = {
+            "pet-hair": 5,
+            "deep-interior": 3,
+            "waxing": 4
+        };
+
+        // Add-ons that require interior cleaning
+        const interiorRequired = ["pet-hair", "deep-interior"];
+
+        // 1. Base service
+        if (service) {
+            total += basePrices[service];
+        }
+
+        // 2. SUV surcharge
+        if (carType === "suv") {
+            total *= 1.10; // +10%
+        }
+
+        // 3. Add-ons
+        addons.forEach(addon => {
+            total += addonPrices[addon];
+        });
+
+        // 4. If add-ons require interior clean AND service is exterior only
+        if (
+            ( !service || service === "exterior") &&
+            addons.some(a => interiorRequired.includes(a))
+        ) {
+            total += 15; // add interior clean price
+        }
+
+        // Round to nearest penny
+        total = Math.round(total * 100) / 100;
+
+        // Update UI
+        document.getElementById("price-estimate").textContent =
+            `Estimated total: £${total}`;
+        }
+
+        // Attach listeners
+        ["service", "car-type", "addons"].forEach(id => {
+        document.getElementById(id).addEventListener("change", calculatePrice);
+        });
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const form = document.getElementById("booking-form");
+    const success = document.getElementById("form-success");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const data = new FormData(form);
+      const payload = {};
+      for (const [key, value] of data.entries()) {
+        if (payload[key]) {
+          if (!Array.isArray(payload[key])) payload[key] = [payload[key]];
+          payload[key].push(value);
+        } else {
+          payload[key] = value;
+        }
+      }
+
+      console.log("Booking request (local only):", payload);
+
+      success.style.display = "block";
+      setTimeout(() => {
+        success.style.display = "none";
+      }, 6000);
+
+      form.reset();
+    });
+
+    document.getElementById("clear-addons").addEventListener("click", () => {
+  const addons = document.getElementById("addons");
+  Array.from(addons.options).forEach(opt => opt.selected = false);
+  calculatePrice();
+});
+
+  </script>
+</body>
+</html>
