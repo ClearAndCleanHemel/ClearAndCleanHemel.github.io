@@ -6,542 +6,859 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      --bg: #f7f5f2;
-      --bg-alt: #ffffff;
-      --accent: #c9a15b;
-      --accent-soft: #e4cf9a;
-      --text-main: #222222;
-      --text-muted: #666666;
-      --border-soft: #e0ddd7;
-      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
-      --radius: 14px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      background: #f8f6f2;
-        background-image: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.9), rgba(240,236,230,0.6)),
-                            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.04"/></svg>');
-        background-size: cover;
-        color: var(--text-main);
-      line-height: 1.6;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: "Georgia", "Times New Roman", serif;
-      letter-spacing: 0.04em;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px 16px 48px;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 0 24px;
-      border-bottom: 1px solid var(--border-soft);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 20%, #ffffff, #e7dfcf);
-      border: 1px solid #ddd2bd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      color: var(--accent);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .logo-text h1 {
-      font-size: 1.2rem;
-      text-transform: uppercase;
-    }
-
-    .logo-text span {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    nav {
-      display: flex;
-      gap: 18px;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-    }
-
-    nav a {
-      position: relative;
-      padding-bottom: 4px;
-    }
-
-    nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width 0.2s ease;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
-      gap: 32px;
-      padding: 32px 0 40px;
-      align-items: center;
-    }
-
-    .hero-text h2 {
-      font-size: 2.4rem;
-      margin-bottom: 12px;
-    }
-
-    .hero-text h2 span {
-      color: var(--accent);
-    }
-
-    .hero-subtitle {
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-
-    .hero-text p {
-      color: var(--text-muted);
-      margin-bottom: 20px;
-      max-width: 480px;
-    }
-
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    .badge {
-      font-size: 0.8rem;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      background: rgba(255, 255, 255, 0.9);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .btn-primary {
-      padding: 10px 20px;
-      border-radius: 999px;
-      border: none;
-      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
-      color: #fff;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .btn-secondary {
-      padding: 9px 18px;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      background: rgba(255, 255, 255, 0.9);
-      font-size: 0.9rem;
-      cursor: pointer;
-      color: var(--text-muted);
-    }
-
-    .hero-visual {
-      background: radial-gradient(circle at top, #ffffff, #f0ece5);
-      border-radius: 24px;
-      padding: 18px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid #e3ddd2;
-      display: grid;
-      grid-template-rows: auto auto;
-      gap: 12px;
-    }
-
-    .hero-visual-main {
-      border-radius: 18px;
-      background: linear-gradient(135deg, #fdfbf7, #f1ebe0);
-      border: 1px solid #e3ddd2;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 180px;
-    }
-
-    .hero-visual-main h3 {
-      font-size: 1rem;
-      margin-bottom: 6px;
-    }
-
-    .hero-visual-main p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      max-width: 260px;
-    }
-
-    .hero-visual-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .hero-visual-tag {
-      font-size: 0.75rem;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: #ffffff;
-      border: 1px solid #e3ddd2;
-    }
-
-    .hero-visual-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
-
-    .hero-visual-card {
-      border-radius: 14px;
-      background: #ffffff;
-      border: 1px solid #e3ddd2;
-      padding: 10px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .hero-visual-card strong {
-      display: block;
-      font-size: 0.8rem;
-      margin-bottom: 4px;
-      color: var(--text-main);
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 18px;
-    }
-
-    .section-header h2 {
-      font-size: 1.4rem;
-    }
-
-    .section-header span {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--bg-alt);
-      border-radius: var(--radius);
-      padding: 18px 18px 16px;
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .card h3 {
-      font-size: 1rem;
-      margin-bottom: 6px;
-    }
-
-    .card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .price {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-
-    .price span {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-weight: 400;
-      margin-left: 4px;
-    }
-
-    .addons-list {
-      list-style: none;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .addons-list li::before {
-      content: "• ";
-      color: var(--accent);
-    }
-
-    .two-column {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
-      gap: 24px;
-    }
-
-    .about-text p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .about-highlight {
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: #fff;
-      border: 1px solid var(--border-soft);
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-    }
-
-    .team-card {
-      background: var(--bg-alt);
-      border-radius: var(--radius);
-      padding: 14px;
-      border: 1px solid var(--border-soft);
-      text-align: center;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .team-avatar {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      margin: 0 auto 10px;
-      background: linear-gradient(135deg, #fdfbf7, #e8e0d0);
-      border: 1px solid #ddd2bd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      color: var(--accent);
-    }
-
-    .team-card h3 {
-      font-size: 0.95rem;
-      margin-bottom: 2px;
-    }
-
-    .team-role {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .team-card p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-    }
-
-    .gallery-item {
-      border-radius: 14px;
-      background: linear-gradient(135deg, #fdfbf7, #f0ece5);
-      border: 1px solid var(--border-soft);
-      padding: 12px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      box-shadow: var(--shadow-soft);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 120px;
-    }
-
-    .gallery-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .gallery-title {
-      font-size: 0.9rem;
-      color: var(--text-main);
-      margin-bottom: 6px;
-    }
-
-    .form-card {
-      background: var(--bg-alt);
-      border-radius: var(--radius);
-      padding: 18px;
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-soft);
-    }
-
-    form {
-      display: grid;
-      gap: 12px;
-    }
-
-    label {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 8px 10px;
-      border-radius: 8px;
-      border: 1px solid #d6d1c8;
-      font-size: 0.9rem;
-      font-family: inherit;
-      background: #fdfbf7;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 12px;
-    }
-
-    .form-note {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    .form-success {
-      margin-top: 10px;
-      font-size: 0.85rem;
-      color: #2f7a3e;
-      background: #e4f3e7;
-      border-radius: 8px;
-      padding: 8px 10px;
-      display: none;
-    }
-
-    footer {
-      margin-top: 32px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border-soft);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    @media (max-width: 800px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-      .hero-visual {
-        order: -1;
-      }
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      nav {
-        font-size: 0.8rem;
-      }
-      .two-column {
-        grid-template-columns: 1fr;
-      }
-    }
+  --bg: #f7f5f2;
+  --bg-alt: #ffffff;
+  --accent: #c9a15b;
+  --accent-soft: #e4cf9a;
+  --text-main: #222222;
+  --text-muted: #666666;
+  --border-soft: #e0ddd7;
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f8f6f2;
+  background-image:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.9), rgba(240,236,230,0.6)),
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.04"/></svg>');
+  background-size: cover;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Georgia", "Times New Roman", serif;
+  letter-spacing: 0.04em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0 24px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 20%, #ffffff, #e7dfcf);
+  border: 1px solid #ddd2bd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--accent);
+  box-shadow: var(--shadow-soft);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text h1 {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+.logo-text span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+nav {
+  display: flex;
+  gap: 18px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+nav a {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.2s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+  gap: 32px;
+  padding: 32px 0 40px;
+  align-items: center;
+}
+
+.hero-text h2 {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+}
+
+.hero-text h2 span {
+  color: var(--accent);
+}
+
+.hero-subtitle {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.hero-text p {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  max-width: 480px;
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.badge {
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: rgba(255, 255, 255, 0.9);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-secondary {
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.hero-visual {
+  background: radial-gradient(circle at top, #ffffff, #f0ece5);
+  border-radius: 24px;
+  padding: 18px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid #e3ddd2;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 12px;
+}
+
+.hero-visual-main {
+  border-radius: 18px;
+  background: linear-gradient(135deg, #fdfbf7, #f1ebe0);
+  border: 1px solid #e3ddd2;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 180px;
+}
+
+.hero-visual-main h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.hero-visual-main p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  max-width: 260px;
+}
+
+.hero-visual-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.hero-visual-tag {
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid #e3ddd2;
+}
+
+.hero-visual-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.hero-visual-card {
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e3ddd2;
+  padding: 10px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.hero-visual-card strong {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+  color: var(--text-main);
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 18px;
+}
+
+.section-header h2 {
+  font-size: 1.4rem;
+}
+
+.section-header span {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: var(--bg-alt);
+  border-radius: var(--radius);
+  padding: 18px 18px 16px;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+.card h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.price span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+.addons-list {
+  list-style: none;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.addons-list li::before {
+  content: "• ";
+  color: var(--accent);
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+  gap: 24px;
+}
+
+.about-text p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.about-highlight {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.team-card {
+  background: var(--bg-alt);
+  border-radius: var(--radius);
+  padding: 14px;
+  border: 1px solid var(--border-soft);
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+}
+
+.team-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  background: linear-gradient(135deg, #fdfbf7, #e8e0d0);
+  border: 1px solid #ddd2bd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--accent);
+}
+
+.team-card h3 {
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.team-role {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.team-card p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.gallery-item {
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fdfbf7, #f0ece5);
+  border: 1px solid var(--border-soft);
+  padding: 12px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+}
+
+.gallery-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.gallery-title {
+  font-size: 0.9rem;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.form-card {
+  background: var(--bg-alt);
+  border-radius: var(--radius);
+  padding: 18px;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+form {
+  display: grid;
+  gap: 12px;
+}
+
+label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #d6d1c8;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: #fdfbf7;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.form-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.form-success {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #2f7a3e;
+  background: #e4f3e7;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: none;
+}
+
+footer {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-soft);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* BOOKING SECTION */
+.booking-section {
+  padding: 60px 20px;
+  background: #f8f8f8;
+}
+
+.section-header.centered {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.booking-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.booking-columns {
+  display: block;
+}
+
+.booking-form {
+  background: white;
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-sections-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 10px;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 6px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-group.half {
+  flex: 1;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.booking-form textarea {
+  min-height: 80px;
+}
+
+.full-width-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1rem;
+}
+
+.small-btn {
+  margin-top: 6px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+}
+
+.price-estimate {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #c9a15b;
+}
+
+.booking-info {
+  padding: 16px 8px 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .form-sections-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .hero-visual {
+    order: -1;
+  }
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  nav {
+    font-size: 0.8rem;
+  }
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================================= */
+/* =============== BUTTON CLEANING ANIMATION =============== */
+/* ========================================================= */
+
+.submit-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.clean-btn-animation {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+  display: none;
+}
+
+.clean-btn-animation.active {
+  display: block;
+}
+
+/* SPONGE — 135% bigger, starts EXACTLY in the center */
+.clean-btn-animation .sponge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 95px;
+  height: 47px;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  border-radius: 16px 16px 20px 20px;
+  background: linear-gradient(180deg, #ffd95e, #f5b938);
+  border: 2px solid rgba(199, 146, 18, 0.45);
+  box-shadow:
+    0 12px 26px rgba(189, 154, 33, 0.28),
+    inset 0 4px 8px rgba(255,255,255,0.35);
+  opacity: 0;
+}
+
+.clean-btn-animation .sponge::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 14px;
+  width: 60px;
+  height: 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.28);
+}
+
+/* 100-DEGREE MOTION — 3× amplitude, expressive arcs */
+.clean-btn-animation.active .sponge {
+  animation: spongeDiagonal100 2.8s ease-in-out forwards;
+}
+
+@keyframes spongeDiagonal100 {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -200%) rotate(-12deg); /* 3× higher */
+  }
+  10% {
+    opacity: 1;
+  }
+  30% {
+    transform: translate(-10%, -40%) rotate(12deg); /* sweeping down-right */
+  }
+  55% {
+    transform: translate(40%, 80%) rotate(-8deg); /* deepest SE, 3× amplitude */
+  }
+  80% {
+    transform: translate(90%, -20%) rotate(8deg); /* rising NE */
+  }
+  100% {
+    opacity: 1;
+    transform: translate(140%, -200%) rotate(0deg); /* exits high NE */
+  }
+}
+
+/* BUBBLES — follow sponge path closely */
+.clean-btn-animation .bubble {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%,
+    rgba(255,255,255,0.95),
+    rgba(168,224,244,0.8) 60%,
+    rgba(123,198,230,0.35)
+  );
+  border: 1px solid rgba(123,198,230,0.35);
+  opacity: 0;
+  box-shadow: inset 0 0 6px rgba(255,255,255,0.7);
+}
+
+.clean-btn-animation.active .bubble {
+  animation: bubbleFollowSponge 1.4s ease-out forwards;
+}
+
+/* Bubbles positioned around the diagonal path */
+.bubble.b1 { top: 48%; left: 40%; animation-delay: 0.15s; }
+.bubble.b2 { top: 42%; left: 50%; animation-delay: 0.30s; }
+.bubble.b3 { top: 55%; left: 60%; animation-delay: 0.45s; }
+.bubble.b4 { top: 50%; left: 70%; animation-delay: 0.60s; }
+.bubble.b5 { top: 60%; left: 80%; animation-delay: 0.75s; }
+
+@keyframes bubbleFollowSponge {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px) scale(1.3);
+  }
+}
+
+/* SPARKLE — smaller, centered vertically, visible at right edge */
+.clean-btn-animation .sparkle {
+  position: absolute;
+  right: 6px;              /* ALWAYS inside the button */
+   /* NOW THIS WORKS — no translateY interfering */
+  top: 25%;                 /* halfway up the button */
+
+  transform: scale(0.2) rotate(0deg);  /* removed translateY */
+  width: 32px;             /* smaller sparkle */
+  height: 32px;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 0 14px rgba(255,255,200,1));
+}
+
+/* main sparkle cross */
+.clean-btn-animation .sparkle::before,
+.clean-btn-animation .sparkle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.4), #fffad0, #fff);
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+}
+
+.clean-btn-animation .sparkle::before {
+  width: 6px;
+  height: 32px;
+}
+
+.clean-btn-animation .sparkle::after {
+  width: 32px;
+  height: 6px;
+}
+
+/* diagonal sparkle arms */
+.clean-btn-animation .sparkle span {
+  position: absolute;
+  inset: 0;
+  transform: rotate(45deg);
+}
+
+.clean-btn-animation .sparkle span::before,
+.clean-btn-animation .sparkle span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.4), #fffad0, #fff);
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+}
+
+.clean-btn-animation .sparkle span::before {
+  width: 5px;
+  height: 24px;
+}
+
+.clean-btn-animation .sparkle span::after {
+  width: 24px;
+  height: 5px;
+}
+
+/* LONGER, MORE VISIBLE ANIMATION */
+.clean-btn-animation.active .sparkle {
+  animation: sparklePopStrong 3.2s ease-out 2.0s forwards;
+}
+
+@keyframes sparklePopStrong {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.2) rotate(0deg);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.6) rotate(20deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1) rotate(45deg);
+  }
+}
+
+
+
+
   </style>
 </head>
 <body>
@@ -639,7 +956,7 @@
               Hand wash, wheel faces, glass and finishing touches for a refined, clean look without harsh
               shortcuts.
             </p>
-            <div class="price">£10 <span>small car · SUV +10%</span></div>
+            <div class="price">£10 <span>small car · SUV +40%</span></div>
             <ul class="addons-list">
               <li>Bodywork wash and rinse</li>
               <li>Glass cleaned inside & out</li>
@@ -652,7 +969,7 @@
               A calm, refreshed interior: vacuuming, surfaces, touch points and glass, with care for the
               details you notice every day.
             </p>
-            <div class="price">£15 <span>small car · SUV +10%</span></div>
+            <div class="price">£15 <span>small car · SUV +40%</span></div>
             <ul class="addons-list">
               <li>Full cabin vacuum</li>
               <li>Dashboard & console wiped</li>
@@ -664,7 +981,7 @@
             <p>
               Interior and exterior combined into a single visit for a car that feels reset, inside and out.
             </p>
-            <div class="price">£25 <span>small car · SUV +10%</span></div>
+            <div class="price">£25 <span>small car · SUV +40%</span></div>
             <ul class="addons-list">
               <li>Exterior & interior clean</li>
               <li>Glass throughout</li>
@@ -745,14 +1062,14 @@
             </p>
           </div>
           <div class="team-card">
-            <div class="team-avatar">F</div>
-            <h3>Francisco</h3>
-            <div class="team-role">Technical specialist and Quality Assurance</div>
-            <p>
-              Ensures the smooth operation of all cleaning processes and maintains the high standards the team
-              expects for themselves.
-            </p>
-          </div>
+          <div class="team-avatar">F</div>
+          <h3>Francisco</h3>
+          <div class="team-role">Technical Specialist · Webmaster</div>
+          <p>
+            Manages the website to keep everything running reliably and professionally.
+          </p>
+        </div>
+
         </div>
       </section>
 
@@ -801,216 +1118,358 @@
         </div>
       </section>
 
-      <section id="booking">
-        <div class="section-header">
-          <h2>Booking</h2>
-          <span>Manual appointments</span>
-        </div>
-        <div class="two-column">
-          <div class="form-card">
-            <form id="booking-form">
-              <div class="form-row">
-                <div>
-                  <label for="name">Name</label>
-                  <input id="name" name="name" type="text" required />
-                </div>
-                <div>
-                  <label for="car-type">Car type</label>
-                  <select id="car-type" name="car-type" required>
-                    <option value="">Select car type</option>
-                    <option value="small">Small car</option>
-                    <option value="suv">SUV (+10%)</option>
-                  </select>
-                </div>
-              </div>
+      <section id="booking" class="booking-section">
+  <div class="section-header centered">
+    <h2>Booking</h2>
+    <span>Manual appointments</span>
+  </div>
 
-              <div class="form-row">
-                <div>
-                  <label for="service">Service</label>
-                  <select id="service" name="service" required>
-                    <option value="">Select service</option>
-                    <option value="exterior">Exterior clean (£10)</option>
-                    <option value="interior">Interior clean (£15)</option>
-                    <option value="full">Full detail (£25)</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="addons">Add‑ons (optional)</label>
-                  <select id="addons" name="addons" multiple>
-                    <option value="pet-hair">Pet hair removal*</option>
-                    <option value="deep-interior">Deep interior clean*</option>
-                    <option value="waxing">Waxing</option>
-                  </select>
-                  <button type="button" id="clear-addons" class="btn-secondary">
-                    Clear add‑ons
-                    </button>
-                 <div class="form-note">
-                    *Addons marked with an asterisk include an interior clean to ensure the best results.
-                  </div>
-                  <div class="form-note">
-                    Hold Ctrl (Windows) or Cmd (Mac) to select multiple.
-                  </div>
-                </div>
-              </div>
+  <div class="booking-wrapper">
+    <div class="booking-columns">
 
-              <div class="form-row">
-                <div>
-                  <label for="date">Preferred date</label>
-                  <input id="date" name="date" type="date" required />
-                </div>
-                <div>
-                  <label for="time">Preferred time</label>
-                  <input id="time" name="time" type="time" required />
-                </div>
-              </div>
+      <!-- LEFT COLUMN -->
+      <form id="booking-form" class="booking-form">
 
-              <div>
-                <label for="address">Address (Hemel Hempstead area)</label>
-                <textarea id="address" name="address" required></textarea>
-              </div>
+        <div class="form-sections-grid">
+          <div class="form-section">
+            <!-- GROUP 1: SERVICE DETAILS -->
+            <h3 class="form-section-title">1. Service details</h3>
 
-              <div>
-                <label for="notes">Notes (optional)</label>
-                <textarea id="notes" name="notes" placeholder="Anything specific you’d like to mention"></textarea>
-              </div>
-              <div id="price-estimate" style="
-                margin-top: 10px;
-                font-size: 1rem;
-                font-weight: 600;
-                color: #c9a15b;
-                ">
-                Estimated total: £0
-                </div>
+            <div class="form-group">
+              <label for="car-type">Car type</label>
+              <select id="car-type" name="car-type" required>
+                <option value="">Select car type</option>
+                <option value="small">Small car</option>
+                <option value="suv">SUV (+40%)</option>
+              </select>
+            </div>
 
-              <button type="submit" class="btn-primary">
-                Request appointment
+            <div class="form-group">
+              <label for="service">Service</label>
+              <select id="service" name="service" required>
+                <option value="">Select service</option>
+                <option value="exterior">Exterior clean (£10)</option>
+                <option value="interior">Interior clean (£15)</option>
+                <option value="full">Full detail (£25)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="addons">Add‑ons (optional)</label>
+              <select id="addons" name="addons" multiple>
+                <option value="pet-hair">Pet hair removal*</option>
+                <option value="deep-interior">Deep interior clean*</option>
+                <option value="waxing">Waxing</option>
+              </select>
+              <button type="button" id="clear-addons" class="btn-secondary small-btn">
+                Clear add‑ons
               </button>
-              <div id="form-success" class="form-success">
-                Thank you. Your request has been recorded locally. In a real deployment, this would be sent to the team for manual confirmation.
+              <div class="form-note">*Addons marked with an asterisk include an interior clean.</div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group half">
+                <label for="date">Preferred date</label>
+                <input id="date" name="date" type="date" required />
               </div>
-            </form>
+
+              <div class="form-group half">
+                <label for="time">Preferred time</label>
+                <select id="time" name="time" required></select>
+              </div>
+            </div>
           </div>
-          <div>
-            <div class="about-highlight">
-              <strong>Manual booking · Pay on completion.</strong><br />
-              This form is designed for local development. No contact details are shown publicly and no
-              real messages are sent. In a live deployment, submissions would be forwarded to the team for
-              manual confirmation and scheduling.
+
+          <div class="form-section">
+            <!-- GROUP 2: CUSTOMER DETAILS -->
+            <h3 class="form-section-title">2. Your information</h3>
+
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" required />
+            </div>
+
+            <div class="form-group">
+              <label for="to_email">Email</label>
+              <input id="to_email" name="to_email" type="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="address">Address (Hemel Hempstead area)</label>
+              <textarea id="address" name="address" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="notes">Notes (optional)</label>
+              <textarea id="notes" name="notes"></textarea>
             </div>
           </div>
         </div>
-      </section>
+
+        <div id="price-estimate" class="price-estimate">
+          Estimated total: £0
+        </div>
+
+        <div class="submit-wrapper">
+  <button type="submit" class="btn-primary full-width-btn">
+    Request appointment
+  </button>
+
+  <button id="fake-trigger" type="button">Trigger Animation</button>
+
+  <!-- ❌ REMOVE the extra submit-wrapper -->
+  <!-- <div class="submit-wrapper"> -->
+
+  <div id="clean-btn-animation" class="clean-btn-animation" aria-hidden="true">
+    <div class="sponge"></div>
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+    <div class="bubble b3"></div>
+    <div class="bubble b4"></div>
+    <div class="bubble b5"></div>
+    <div class="sparkle"><span></span></div>
+  </div>
+
+  <!-- ❌ REMOVE the extra closing div -->
+  <!-- </div> -->
+
+  <div id="form-success" class="form-success">
+    Thank you. Your request has been recorded.
+  </div>
+
+  <div id="cleaning-animation" class="cleaning-animation" aria-hidden="true">
+    <div class="sponge"></div>
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+    <div class="bubble b3"></div>
+    <div class="bubble b4"></div>
+    <div class="bubble b5"></div>
+    <div class="sparkle"><span></span></div>
+    <div class="cleaning-surface"></div>
+  </div>
+</div>
+
+
+      </form>
+
+      <div class="booking-info">
+        <div class="about-highlight">
+          <strong>Manual booking · Pay on completion.</strong><br />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
     </main>
 
     <footer>
       <div>© <span id="year"></span> Clear and Clean. All rights reserved.</div>
-      <div>Static local site · HTML · CSS · JS</div>
+
     </footer>
   </div>
 
   <script>
-    function calculatePrice() {
-        const service = document.getElementById("service").value;
-        const carType = document.getElementById("car-type").value;
-        const addons = Array.from(document.getElementById("addons").selectedOptions).map(o => o.value);
+  function calculatePrice() {
+    const service = document.getElementById("service").value;
+    const carType = document.getElementById("car-type").value;
+    const addons = Array.from(document.getElementById("addons").selectedOptions).map(o => o.value);
 
-        let total = 0;
+    let total = 0;
 
-        // Base service prices
-        const basePrices = {
-            exterior: 10,
-            interior: 15,
-            full: 25
-        };
+    // Base service prices
+    const basePrices = {
+      exterior: 10,
+      interior: 15,
+      full: 25
+    };
 
-        // Add-on prices
-        const addonPrices = {
-            "pet-hair": 5,
-            "deep-interior": 3,
-            "waxing": 4
-        };
+    // Add-on prices
+    const addonPrices = {
+      "pet-hair": 5,
+      "deep-interior": 3,
+      "waxing": 4
+    };
 
-        // Add-ons that require interior cleaning
-        const interiorRequired = ["pet-hair", "deep-interior"];
+    // Add-ons that require interior cleaning
+    const interiorRequired = ["pet-hair", "deep-interior"];
 
-        // 1. Base service
-        if (service) {
-            total += basePrices[service];
-        }
-
-        // 2. SUV surcharge
-        if (carType === "suv") {
-            total *= 1.10; // +10%
-        }
-
-        // 3. Add-ons
-        addons.forEach(addon => {
-            total += addonPrices[addon];
-        });
-
-        // 4. If add-ons require interior clean AND service is exterior only
-        if (
-            ( !service || service === "exterior") &&
-            addons.some(a => interiorRequired.includes(a))
-        ) {
-            total += 15; // add interior clean price
-        }
-
-        // Round to nearest penny
-        total = Math.round(total * 100) / 100;
-
-        // Update UI
-        document.getElementById("price-estimate").textContent =
-            `Estimated total: £${total}`;
-        }
-
-        // Attach listeners
-        ["service", "car-type", "addons"].forEach(id => {
-        document.getElementById(id).addEventListener("change", calculatePrice);
-        });
-
-    function scrollToSection(id) {
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+    // 1. Base service
+    if (service) {
+      total += basePrices[service];
     }
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // 2. SUV surcharge
+    if (carType === "suv") {
+      total *= 1.40; // +40%
+    }
 
-    const form = document.getElementById("booking-form");
-    const success = document.getElementById("form-success");
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const data = new FormData(form);
-      const payload = {};
-      for (const [key, value] of data.entries()) {
-        if (payload[key]) {
-          if (!Array.isArray(payload[key])) payload[key] = [payload[key]];
-          payload[key].push(value);
-        } else {
-          payload[key] = value;
-        }
-      }
-
-      console.log("Booking request (local only):", payload);
-
-      success.style.display = "block";
-      setTimeout(() => {
-        success.style.display = "none";
-      }, 6000);
-
-      form.reset();
+    // 3. Add-ons
+    addons.forEach(addon => {
+      total += addonPrices[addon];
     });
 
-    document.getElementById("clear-addons").addEventListener("click", () => {
-  const addons = document.getElementById("addons");
-  Array.from(addons.options).forEach(opt => opt.selected = false);
-  calculatePrice();
-});
+    // 4. Add interior clean if required
+    if (
+      (!service || service === "exterior") &&
+      addons.some(a => interiorRequired.includes(a))
+    ) {
+      total += 15;
+    }
 
-  </script>
+    // Round
+    total = Math.round(total * 100) / 100;
+
+    // Update UI
+    document.getElementById("price-estimate").textContent =
+      `Estimated total: £${total}`;
+  }
+
+  // Attach listeners
+  ["service", "car-type", "addons"].forEach(id => {
+    document.getElementById(id).addEventListener("change", calculatePrice);
+  });
+
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  populateTimeSlots();
+  const form = document.getElementById("booking-form");
+  const success = document.getElementById("form-success");
+  const cleaningAnimation = document.getElementById("clean-btn-animation");
+
+
+  function playSuccessAnimation() {
+    cleaningAnimation.classList.remove("active");
+    void cleaningAnimation.offsetWidth;
+    cleaningAnimation.classList.add("active");
+
+    setTimeout(() => {
+      cleaningAnimation.classList.remove("active");
+    }, 3200);
+  }
+
+  form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const formData = {
+    to_email: document.getElementById("to_email").value,
+    name: document.getElementById("name").value,
+    car_type: document.getElementById("car-type").value,
+    service: document.getElementById("service").value,
+    addons: Array.from(document.getElementById("addons").selectedOptions).map(o => o.value).join(", "),
+    date: document.getElementById("date").value,
+    time: document.getElementById("time").value,
+    address: document.getElementById("address").value,
+    notes: document.getElementById("notes").value,
+    price: document.getElementById("price-estimate").textContent
+  };
+
+  console.log("[SUBMIT] Sending customer email…");
+
+  // 1. Send email to the customer
+  emailjs.send("service_wevohf6", "template_ahzeccm", formData)
+    .then(() => {
+      console.log("[EMAILJS] Customer email sent");
+
+      // 2. Send email to YOU (the business)
+      console.log("[SUBMIT] Sending admin email…");
+
+      return emailjs.send("service_wevohf6", "template_admin", formData);
+    })
+    .then(() => {
+      console.log("[EMAILJS] Admin email sent");
+
+      success.style.display = "block";
+      playSuccessAnimation();
+      setTimeout(() => success.style.display = "none", 6000);
+      form.reset();
+      calculatePrice();
+    })
+    .catch((err) => {
+      console.error("[EMAILJS] Error:", err);
+      alert("There was an error sending your request. Please try again.");
+    });
+  });
+
+  function populateTimeSlots() {
+    const timeSelect = document.getElementById("time");
+    timeSelect.innerHTML = ""; // clear existing options
+
+    const openingHour = 9;
+    const closingHour = 18;
+
+    for (let hour = openingHour; hour < closingHour; hour++) {
+      ["00", "30"].forEach(min => {
+        const timeString = `${String(hour).padStart(2, "0")}:${min}`;
+        const option = document.createElement("option");
+        option.value = timeString;
+        option.textContent = timeString;
+        timeSelect.appendChild(option);
+      });
+    }
+  }
+
+
+  // Clear add-ons
+  document.getElementById("clear-addons").addEventListener("click", () => {
+    const addons = document.getElementById("addons");
+    Array.from(addons.options).forEach(opt => opt.selected = false);
+    calculatePrice();
+  });
+
+  // Disable weekdays
+  const dateInput = document.getElementById("date");
+  dateInput.addEventListener("change", () => {
+    const date = new Date(dateInput.value);
+    const day = date.getDay(); // 0=Sun, 6=Sat
+
+    if (day !== 0 && day !== 6) {
+      alert("Only weekend dates (Saturday or Sunday) are available.");
+      dateInput.value = "";
+    }
+  });
+
+  // Time restriction
+  const timeInput = document.getElementById("time");
+  timeInput.addEventListener("change", () => {
+    const [hour] = timeInput.value.split(":").map(Number);
+
+    if (hour < 9 || hour >= 18) {
+      alert("Bookings are only available between 09:00 and 18:00.");
+      timeInput.value = "";
+    }
+  });
+
+function playButtonCleaningAnimation() {
+  const anim = document.getElementById("clean-btn-animation");
+
+  // Restart animation cleanly
+  anim.classList.remove("active");
+  void anim.offsetWidth; // forces reflow
+  anim.classList.add("active");
+
+  // Optional: auto-hide after animation ends
+  setTimeout(() => {
+    anim.classList.remove("active");
+  }, 3000);
+}
+document.getElementById("fake-trigger").addEventListener("click", () => {
+  playButtonCleaningAnimation();
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("SSAfVUUI0wgO96WHY");
+</script>
+
+
 </body>
 </html>
