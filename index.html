@@ -1215,24 +1215,6 @@ footer {
     Request appointment
   </button>
 
-  <button id="fake-trigger" type="button">Trigger Animation</button>
-
-  <!-- ❌ REMOVE the extra submit-wrapper -->
-  <!-- <div class="submit-wrapper"> -->
-
-  <div id="clean-btn-animation" class="clean-btn-animation" aria-hidden="true">
-    <div class="sponge"></div>
-    <div class="bubble b1"></div>
-    <div class="bubble b2"></div>
-    <div class="bubble b3"></div>
-    <div class="bubble b4"></div>
-    <div class="bubble b5"></div>
-    <div class="sparkle"><span></span></div>
-  </div>
-
-  <!-- ❌ REMOVE the extra closing div -->
-  <!-- </div> -->
-
   <div id="form-success" class="form-success">
     Thank you. Your request has been recorded.
   </div>
@@ -1460,9 +1442,7 @@ function playButtonCleaningAnimation() {
     anim.classList.remove("active");
   }, 3000);
 }
-document.getElementById("fake-trigger").addEventListener("click", () => {
-  playButtonCleaningAnimation();
-});
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
